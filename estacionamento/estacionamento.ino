@@ -60,6 +60,45 @@ void setup() {
 
 }
 
+void loop() {
+  
+  verifica_dados();
+
+  exibir_numero(qte_vagas); 
+  digitalWrite(trigPin, LOW);
+  delayMicroseconds(2);
+  digitalWrite(trigPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin, LOW);
+  duration = pulseIn(echoPin, HIGH);
+  distance = duration * 0.034 / 2; 
+ 
+
+
+ if ((distance < 20) && (qte_vagas != 0))
+  {
+ 
+      Serial.println("Carro chegou");
+      delay(1000);
+
+      Serial.println("Verifica se tem vaga");
+    //  delay(1000);
+
+      Serial.println("Abre a cancela");
+      abrir_cancela();
+
+      delay(5000);
+
+      Serial.println("Fecha a cancela");
+      fechar_cancela();
+
+     delay(5000);
+  
+ }
+
+}
+
+
 
 void exibir_numero(int numero)
 {
@@ -112,45 +151,5 @@ void verifica_dados (void)
 
   if(Serial.available()>0)
   qte_vagas = Serial.read();
-
-}
-
-void loop() {
-  
-  verifica_dados();
-
-  exibir_numero(qte_vagas); 
-  digitalWrite(trigPin, LOW);
-  delayMicroseconds(2);
-  digitalWrite(trigPin, HIGH);
-  delayMicroseconds(10);
-  digitalWrite(trigPin, LOW);
-  duration = pulseIn(echoPin, HIGH);
-  distance = duration * 0.034 / 2; 
- 
-
-
- if ((distance < 20) && (qte_vagas != 0))
-  {
- 
-      Serial.println("Carro chegou");
-      delay(1000);
-
-      Serial.println("Verifica se tem vaga");
-    //  delay(1000);
-
-      Serial.println("Abre a cancela");
-      abrir_cancela();
-
-      delay(5000);
-
-      Serial.println("Fecha a cancela");
-      fechar_cancela();
-
-     delay(5000);
-  
- }
-
-
 
 }
