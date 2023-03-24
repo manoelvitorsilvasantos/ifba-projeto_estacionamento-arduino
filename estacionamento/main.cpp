@@ -26,7 +26,7 @@ void setup(){
 }
 
 void loop(){
-  	if(getDistance() >= 100){
+  	if(getDistance() >= 300){
       	fecharCancela();  
     }
   	else{
